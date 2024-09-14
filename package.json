@@ -1,5 +1,5 @@
 {
-  "name": "vite-node-preset",
+  "name": "@shantry/vite-node-preset",
   "version": "0.0.1",
   "packageManager": "yarn@4.1.1",
   "type": "module",
@@ -7,6 +7,9 @@
     "dist",
     "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "yarn run build"
