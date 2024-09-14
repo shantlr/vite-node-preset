@@ -93,11 +93,6 @@ function config(options?: {
  */
 export const viteNodePreset = (configOptions?: {
   entry?: string | string[] | Record<string, string>;
-}) => {
-  return [
-    shims(),
-    externals(),
-    config(configOptions),
-    tsconfigPaths(),
-  ] satisfies Plugin[];
+}): Plugin[] => {
+  return [shims(), externals(), config(configOptions), tsconfigPaths()];
 };
