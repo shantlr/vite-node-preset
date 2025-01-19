@@ -35,10 +35,11 @@ const require = __createRequire(import.meta.url);
   } satisfies Plugin;
 }
 
-function externals() {
+function externals(options?: Parameters<typeof nodeExternals>[0]) {
   return {
     ...nodeExternals({
       // Options here if needed
+      ...options,
     }),
     name: 'node-externals',
     enforce: 'pre', // The key is to run it before Vite's default dependency resolution plugin
@@ -93,6 +94,12 @@ function config(options?: {
  */
 export const viteNodePreset = (configOptions?: {
   entry?: string | string[] | Record<string, string>;
+  externals?: Parameters<typeof nodeExternals>[0];
 }): Plugin[] => {
-  return [shims(), externals(), config(configOptions), tsconfigPaths()];
+  return [
+    shims(),
+    externals(configOptions?.externals),
+    config(configOptions),
+    tsconfigPaths(),
+  ];
 };
